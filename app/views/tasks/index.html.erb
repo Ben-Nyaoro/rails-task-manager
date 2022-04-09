@@ -1,0 +1,11 @@
+<h1>Showing all Tasks</h1>
+
+<% @tasks %>
+
+<ul class="list-group" style="list-style-type:none; padding: 4px">
+	<% @tasks.each do |task| %>
+			<li style="padding: 4px"><input type="checkbox" id="task" name="task" value="Task"> <%= link_to task.title, task_path(task) %>.....<%= task.completed %></li>
+	<% end %>
+</ul>
+
+<%= link_to "➕ Add a Task", new_task_path %>
