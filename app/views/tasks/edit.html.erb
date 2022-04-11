@@ -1,13 +1,8 @@
-<h1>Edit your task</h1>
+<div class= "container">
+	<h1>Edit your task</h1>
 
-<%= form_for(@task) do |f| %>
-  <%= f.label :title %>
-  <%= f.text_field :title %>
-  <%= f.label :details %>
-  <%= f.text_field :details %>
-  <%= f.label :completed %>
-  <%= f.check_box :completed %>
-  <%= f.submit %>
-<% end %>
+	<%= render "form", task: @task %>
 
-<%= link_to "delete", task_path(@task), method: :delete %>
+	<%= link_to "Back to list", tasks_path %>
+	<%= link_to "delete", task_path(@task), method: :delete, data: {confirm: "Are you sure you want to delete #{@task.id} ?"} %>
+</div>

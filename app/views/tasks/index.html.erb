@@ -1,11 +1,21 @@
-<h1>Showing all Tasks</h1>
+<div class="container">
+	<h1>Showing all Tasks</h1>
 
-<% @tasks %>
+	<% @tasks %>
 
-<ul class="list-group" style="list-style-type:none; padding: 4px">
-	<% @tasks.each do |task| %>
-			<li style="padding: 4px"><input type="checkbox" id="task" name="task" value="Task"> <%= link_to task.title, task_path(task) %>.....<%= task.completed %></li>
-	<% end %>
-</ul>
+	<ul class="list-group" style="list-style-type:none; padding: 4px">
+		<% @tasks.each do |task| %>
+				<li> <% if task.completed %>
+        <i class="fa fa-check-square-o"></i>
+      <% else %>
+        <i class="fa fa-square-o"></i>
+      <% end %>
+			<%= link_to task.title, task_path(task.id) %>
+			<%= link_to task_path(task.id), method: :delete, data: { confirm: "Are you sure you wanr to delete #{task.title}?" } do %>
+  			<i class='fa-solid fa-trash-can'></i>
+			<% end %></li>
+		<% end %>
+	</ul>
 
-<%= link_to "➕ Add a Task", new_task_path %>
+	<i class="fa-solid fa-plus"></i> <%= link_to  "Add a Task", new_task_path %>
+</div>
